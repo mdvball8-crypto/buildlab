@@ -51,7 +51,8 @@ Rules:
 
     if (!res.ok) {
       const errBody = await res.text();
-      return Response.json({ error: `Anthropic API error: ${res.status}` }, { status: 500 });
+      console.error("Anthropic error:", res.status, errBody);
+      return Response.json({ error: `Anthropic API error: ${res.status} - ${errBody}` }, { status: 500 });
     }
 
     const data = await res.json();
